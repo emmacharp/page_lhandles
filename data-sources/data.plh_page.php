@@ -21,7 +21,7 @@
 			return false;
 		}
 
-		public function grab(&$param_pool = null) {
+		public function grab(?array &$param_pool = NULL) {
 			$result = new XMLElement('plh-page');
 
 			$langs  = FLang::getLangs();
