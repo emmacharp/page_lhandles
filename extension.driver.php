@@ -255,6 +255,7 @@ class Extension_page_lhandles extends Extension
 
         $container = new XMLElement('div', null, array('class' => 'field-multilingual'));
 
+        $columns = new XMLElement('div', null, array('class' => 'two columns'));
 
         /*------------------------------------------------------------------------------------------------*/
         /*  Tabs  */
@@ -267,6 +268,7 @@ class Extension_page_lhandles extends Extension
         }
 
         $container->appendChild($ul);
+        $container->appendChild($columns);
 
         /*------------------------------------------------------------------------------------------------*/
         /*  Panels  */
@@ -274,7 +276,7 @@ class Extension_page_lhandles extends Extension
 
         foreach ($langs as $lc) {
             // title
-            $container->appendChild(
+            $columns->appendChild(
                 Widget::Label(
                     __('Localised Title'),
                     Widget::Input(
@@ -283,14 +285,13 @@ class Extension_page_lhandles extends Extension
                         'text',
                         array('length', '30')
                     ),
-                    'tab-panel tab-'.$lc.' tab-title',
-                    null,
-                    array('style' => 'margin-bottom: 0;border-bottom: none;')
+                    'tab-panel tab-'.$lc.' tab-title column',
+                    null
                 )
             );
 
             // handle
-            $container->appendChild(
+            $columns->appendChild(
                 Widget::Label(
                     __('Localised URL Handle'),
                     Widget::Input(
@@ -299,13 +300,13 @@ class Extension_page_lhandles extends Extension
                         'text',
                         array('length', '30')
                     ),
-                    'tab-panel tab-'.$lc.' tab-handle'
+                    'tab-panel tab-'.$lc.' tab-handle column'
                 )
             );
         }
 
         $fieldset->appendChild($container);
-        $context['primary']->prependChild($fieldset);
+        $context['primary']->appendChild($fieldset);
     }
 
     /**
